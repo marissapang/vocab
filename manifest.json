@@ -1,0 +1,12 @@
+{
+	"manifest_version": 2,
+	"name": "GRE Vocab",
+	"version": "1.0",
+	"description": "Shows GRE vocab in the new tab",
+	
+	"chrome_url_overrides": {
+		"newtab": "newpage/newpage.html"
+	},
+
+	"permissions": ["storage"]
+}
