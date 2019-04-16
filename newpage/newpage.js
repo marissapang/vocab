@@ -21,6 +21,14 @@ let definition = dictionary[word];
 
 document.querySelector("#word").textContent = word;
 
+function returnScore(){
+  chrome.storage.sync.get(null, function(items){
+    test_array = Object.values(items)
+    overall_score = test_array.reduce(function(a,b){return a+b;})
+    document.querySelector("#score").textContent = "Score:"+ overall_score
+    console.log("returnScore", items)
+  })
+};
 
 function nextWord(){
   if (deck1.includes(word)){
@@ -44,22 +52,26 @@ function knowWord(){
   	small_dict = {}
   	small_dict[word] = new_value
   	chrome.storage.sync.set(small_dict, function(){})
+    chrome.storage.sync.get(null, function(items){console.log("knowWord",items)})
+    returnScore()
   })
+  nextWord()
+}
 
+function dontKnowWord(){
+  chrome.storage.sync.get(null, function(items){
+    new_value = 0
+    small_dict = {}
+    small_dict[word] = new_value
+    chrome.storage.sync.set(small_dict, function(){})
+    returnScore()
+  })
   nextWord()
 }
 
 function getDefinition(){
   definition = dictionary[word];
   document.querySelector("#definition").textContent = definition
-};
-
-function returnScore(){
-  chrome.storage.sync.get(null, function(items){
-  	test_array = Object.values(items)
-  	overall_score = test_array.reduce(function(a,b){return a+b;})
-  	document.querySelector("#score").textContent = overall_score
-  })
 };
 
 function clearProgress(){
@@ -94,16 +106,12 @@ document
   .addEventListener("click",getDefinition);
 
 document
-  .querySelector("#refreshButton")
-  .addEventListener("click", nextWord);
-
-document
-  .querySelector("#refreshButton")
-  .addEventListener("click", returnScore);
-
-document
   .querySelector("#knowWordButton")
   .addEventListener("click", knowWord)
+
+document
+  .querySelector("#dontKnowWordButton")
+  .addEventListener("click", dontKnowWord)
 
 document
   .querySelector("#clearProgressButton")
@@ -120,3 +128,30 @@ document
 document
   .querySelector("#showDeck3Button")
   .addEventListener("click", showDeck3)
+
+// Code for block 
+// Get the modal
+var modal = document.getElementById('scores_popup');
+
+// Get the button that opens the modal
+viewProgressButton = document.getElementById("viewProgressButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+viewProgressButton.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
