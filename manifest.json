@@ -8,5 +8,8 @@
 		"newtab": "newpage/newpage.html"
 	},
 
-	"permissions": ["storage"]
+	"permissions": ["storage"],
+
+	"content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js; object-src 'self'"
+
 }

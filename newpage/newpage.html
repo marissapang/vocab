@@ -10,11 +10,12 @@
 <body>
 	<section id="clear_progress"> 
 		<button id="clearProgressButton"> Clear Progress </button>
+		<!--<p id="score"> </p>-->
 	</section>
 	
 	<section id ="scores_tracking"> 
 		<p id="score"> </p>
-	</section>	
+	</section>
 
 	<section id = "title">
 		<h3> Ripple GRE Words </h3>
@@ -32,17 +33,20 @@
   	<!-- Modal content -->
   		<div class="modal-content">
     	<span class="close">&times;</span>
-    	<p>Some text in the Modal..</p>
+    	<p>And your score is..</p>
+    	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
   		</div>
 	</div>
 
 	<div class="content">
-		<p id="word"></p>
-		<p id="definition"></p>
+		<p style="margin-left:20px" id="word"> </p>
+		<p style="margin-left:20px" id="definition"> </p>
 		<button id="showDefinitionButton">Show definition</button>
 		<button id="knowWordButton">I know this word </button>
 		<button id="dontKnowWordButton">I don't know this word </button>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
+		<script src="words.js"></script>
 		<script src="newpage.js"></script>
 	</div>
 
