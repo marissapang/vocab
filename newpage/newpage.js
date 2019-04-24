@@ -1,19 +1,3 @@
-
-
-const dictionary = {
-  observant: "ability to notice things",
-  apple: "a crispy red or green fruit (sometimes yellow!)",
-  Daniel:
-    "a man willing to take his own precious time and help out friends in need",
-  cactus: "spiky plant",
-  nihao: "chinese hello",
-  liaoruzhizhang: "knowing something like the back of one's hand",
-  pingguo: "chinese apple",
-  bonjour: "french hello",
-  sortir: "leave",
-  pomme: "french apple"
-};
-
 let word = deck1[Math.floor(Math.random() * deck1.length)];
 let definition = dictionary[word];
 
@@ -99,6 +83,55 @@ function showDeck3(){
   document.querySelector("#definition").textContent = "";
 }
 
+function showDeck4(){
+  word = deck4[Math.floor(Math.random() * deck4.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck5(){
+  word = deck5[Math.floor(Math.random() * deck5.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck6(){
+  word = deck6[Math.floor(Math.random() * deck6.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck7(){
+  word = deck7[Math.floor(Math.random() * deck7.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck8(){
+  word = deck8[Math.floor(Math.random() * deck8.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck9(){
+  word = deck9[Math.floor(Math.random() * deck9.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
+function showDeck10(){
+  word = deck10[Math.floor(Math.random() * deck10.length)];
+  definition = dictionary[word];
+  document.querySelector("#word").textContent = word;
+  document.querySelector("#definition").textContent = "";
+}
+
 document
   .querySelector("#showDefinitionButton")
   .addEventListener("click",getDefinition);
@@ -127,6 +160,34 @@ document
   .querySelector("#showDeck3Button")
   .addEventListener("click", showDeck3)
 
+document
+  .querySelector("#showDeck4Button")
+  .addEventListener("click", showDeck4)
+
+document
+  .querySelector("#showDeck5Button")
+  .addEventListener("click", showDeck5)
+
+document
+  .querySelector("#showDeck6Button")
+  .addEventListener("click", showDeck6)
+
+document
+  .querySelector("#showDeck7Button")
+  .addEventListener("click", showDeck7)
+
+document
+  .querySelector("#showDeck8Button")
+  .addEventListener("click", showDeck8)
+
+document
+  .querySelector("#showDeck9Button")
+  .addEventListener("click", showDeck9)
+
+document
+  .querySelector("#showDeck10Button")
+  .addEventListener("click", showDeck10)
+
 // Code for block 
 // Get the modal
 var modal = document.getElementById('scores_popup');
@@ -154,51 +215,99 @@ window.onclick = function(event) {
   }
 }
 
+window.onload = function(){
+  x = chrome.storage.sync.get(deck1, function(items){
+    console.log("deck 1", items)
+    let known_deck1 = Object.keys(items).reduce(function (filtered, key) {
+      if (items[key] >= 5) filtered[key] = items[key];
+      return filtered;
+    },{});
 
-window.onload = function () {
-  
-var chart = new CanvasJS.Chart("chartContainer", {
-  animationEnabled: true,
-  
-  title:{
-    text:"Fortune 500 Companies by Country"
-  },
-  axisX:{
-    interval: 1
-  },
-  axisY2:{
-    interlacedColor: "rgba(1,77,101,.2)",
-    gridColor: "rgba(1,77,101,.1)",
-    title: "Number of Companies"
-  },
-  data: [{
-    type: "bar",
-    name: "companies",
-    axisYType: "secondary",
-    color: "#014D65",
-    dataPoints: [
-      { y: 3, label: "Sweden" },
-      { y: 7, label: "Taiwan" },
-      { y: 5, label: "Russia" },
-      { y: 9, label: "Spain" },
-      { y: 7, label: "Brazil" },
-      { y: 7, label: "India" },
-      { y: 9, label: "Italy" },
-      { y: 8, label: "Australia" },
-      { y: 11, label: "Canada" },
-      { y: 15, label: "South Korea" },
-      { y: 12, label: "Netherlands" },
-      { y: 15, label: "Switzerland" },
-      { y: 25, label: "Britain" },
-      { y: 28, label: "Germany" },
-      { y: 29, label: "France" },
-      { y: 52, label: "Japan" },
-      { y: 103, label: "China" },
-      { y: 134, label: "US" }
-    ]
-  }]
-});
+    let learning_deck1 = Object.keys(items).reduce(function (filtered, key) {
+      if (items[key] < 5 & items[key] > 1) filtered[key] = items[key];
+      return filtered;
+    },{});
 
-chart.render();
+    let len_deck1_known = Object.keys(known_deck1).length
+    let len_deck1_learning = Object.keys(learning_deck1).length
+    let len_deck1_new = deck1.length - len_deck1_known - len_deck1_learning
+    console.log(len_deck1_known, len_deck1_learning, len_deck1_new)
+    test_global_variable = len_deck1_learning
+    return(test_global_variable)
+  })
+
+
+  setTimeout(function afterTwoSeconds() {
+      var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title:{
+        text: "Evening Sales in a Restaurant"
+      },
+      axisX: {
+      },
+      axisY: {
+      },
+      toolTip: {
+        shared: true
+      },
+      legend:{
+        cursor: "pointer",
+        itemclick: toggleDataSeries
+      },
+      data: [{
+        type: "stackedBar",
+        name: "Meals",
+        showInLegend: "true",
+        dataPoints: [
+          { y: test_global_variable, label: "Deck 10"},
+          { y: 71, label: "Deck 9"},
+          { y: 45, label: "Deck 8"},
+          { y: 56, label: "Deck 7"},
+          { y: 71, label: "Deck 6"},
+          { y: 45, label: "Deck 5"},
+          { y: 56, label: "Deck 4"},
+          { y: 71, label: "Deck 3"},
+          { y: 45, label: "Deck 2"},
+          { y: 56, label: "Deck 1"}  
+        ]
+      },
+      {
+        type: "stackedBar",
+        name: "Takeaway",
+        showInLegend: "true",
+        xValueFormatString: "DD, MMM",
+        yValueFormatString: "$#,##0",
+        dataPoints: [
+          { y: 56, label: "Deck 10"},
+          { y: 71, label: "Deck 9"},
+          { y: 45, label: "Deck 8"},
+          { y: 56, label: "Deck 7"},
+          { y: 71, label: "Deck 6"},
+          { y: 45, label: "Deck 5"},
+          { y: 56, label: "Deck 4"},
+          { y: 71, label: "Deck 3"},
+          { y: 45, label: "Deck 2"},
+          { y: 56, label: "Deck 1"}  
+        ]
+      }]
+    });
+    chart.render();
+
+    function toggleDataSeries(e) {
+      if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      }
+      else {
+        e.dataSeries.visible = true;
+      }
+      chart.render();
+    }
+  }, 1000)
+
+ 
+
+
+
 
 }
+
