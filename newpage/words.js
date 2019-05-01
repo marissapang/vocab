@@ -10,11 +10,14 @@ const dictionary = {
   pingguo: "chinese apple",
   bonjour: "french hello",
   sortir: "leave",
-  pomme: "french apple"
+  pomme: "french apple",
+  test1: "def1",
+  test2: "def2",
+  test3: "def3"
 };
 
 
-const deck1 = ["observant","apple","Daniel","cactus"];
+const deck1 = ["observant","apple","Daniel","cactus", "test1", "test2", "test3"];
 const deck2 = ["nihao","liaoruzhizhang","pingguo"];
 const deck3 = ["bonjour","sortir","pomme"];
 const deck4 = ["observant","apple","Daniel","cactus"];

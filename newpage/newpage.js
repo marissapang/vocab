@@ -18,48 +18,195 @@ function lastFiveWords(){
   chrome.storage.sync.get(["last_five_words"], function(items){
     curr_list = items["last_five_words"]
     curr_list.shift() 
-    console.log("TEST WORD", word)
     curr_list.push(word)
-    console.log("New last five words are:", curr_list)
     chrome.storage.sync.set({last_five_words:curr_list}, function(){})
   })
 }
 
 function pickWord(deck){
-  chrome.storage.sync.get(["last_five_words"], function(items){
+  chrome.storage.sync.get(null, function(items){
     last_five_words = items["last_five_words"]
-    console.log("pickWord last five", last_five_words)
-    rest_of_deck = deck.filter(x => !last_five_words.includes(x) );
-    console.log("full deck", deck)
-    console.log("rest of deck", rest_of_deck)
-    word = rest_of_deck[Math.floor(Math.random() * rest_of_deck.length)]
-    console.log("pickWord word", word)
-    chrome.storage.sync.set({next_word:word}, function(items){})
+    rest_of_deck = deck.filter(x => !last_five_words.includes(x) ); 
+    console.log("1. full list of items", items)
+
+    chrome.storage.sync.get(rest_of_deck, function(items){
+
+      if (Object.keys(items).length == 0){
+        known_words = []
+        learning_words = []
+        new_words = rest_of_deck
+      } else{
+        known_words = Object.keys(items).reduce(function(filtered, key){
+          if (items[key] >= 5) filtered[key] = items[key];
+        return filtered;
+        },{});
+        known_words = Object.keys(known_words)
+
+        learning_words = Object.keys(items).reduce(function(filtered, key){
+          if (items[key] <5) filtered[key] = items[key];
+        return filtered;
+        },{});
+
+        learning_words = Object.keys(learning_words)
+
+        learning_and_known = learning_words.concat(known_words);
+
+        new_words = rest_of_deck.filter(x => 
+          (!learning_and_known.includes(x)))
+      }
+
+      word_group_num = Math.floor(Math.random() * 10)
+
+
+      if (word_group_num <= 5 & learning_words.length > 0){
+        final_deck = learning_words
+      } else if (((word_group_num >= 6 & word_group_num <= 9) | (learning_words.length == 0 & word_group_num <= 5)) & new_words.length > 0){
+        final_deck = new_words
+      } else {
+        final_deck = known_words
+      }
+
+      console.log("2. full deck", deck)
+      console.log("3. last two words", last_five_words)
+      console.log("4. rest of deck", rest_of_deck)
+      console.log("5. word_group_num", word_group_num)
+      console.log("6. learning_words", learning_words)
+      console.log("7. known_words", known_words)
+      console.log("8. new_words", new_words)
+
+
+
+      console.log("final deck", final_deck)
+      console.log("final deck length", final_deck.length)
+      console.log("typeof final deck", typeof(final_deck))
+
+      if (typeof final_deck == "string"){
+        word = final_deck
+      } else{
+        word = final_deck[Math.floor(Math.random() * final_deck.length)]
+      }
+
+      console.log("pickWord word", word)
+      chrome.storage.sync.set({next_word:word}, function(items){})
+
+    })
+
   })
 
 }
 
 function nextWord(){
   if (deck1.includes(word)){
-    console.log("nextWord current word", word)
     pickWord(deck1)
     setTimeout(function afterHalfSec(){
       chrome.storage.sync.get(["next_word"], function(items){
-      console.log("nextWord items within chrome", items)
       word = items["next_word"]
-      console.log("nextWord word within chrome", word)
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)     
+  } else if (deck2.includes(word)){
+    pickWord(deck2)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
       document.querySelector("#word").textContent = word;
       document.querySelector("#definition").textContent = "";
       lastFiveWords();
       })
     }, 50)
-      
-  } else if (deck2.includes(word)){
-    word = deck2[Math.floor(Math.random() * deck2.length)];
+   } else if (deck2.includes(word)){
+    pickWord(deck3)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
   } else if (deck3.includes(word)){
-    word = deck3[Math.floor(Math.random() * deck3.length)]; 
+    pickWord(deck3)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck4.includes(word)){
+    pickWord(deck4)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck5.includes(word)){
+    pickWord(deck5)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck6.includes(word)){
+    pickWord(deck6)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck7.includes(word)){
+    pickWord(deck7)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck8.includes(word)){
+    pickWord(deck8)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck9.includes(word)){
+    pickWord(deck9)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50)
+  } else if (deck10.includes(word)){
+    pickWord(deck10)
+    setTimeout(function afterHalfSec(){
+      chrome.storage.sync.get(["next_word"], function(items){
+      word = items["next_word"]
+      document.querySelector("#word").textContent = word;
+      document.querySelector("#definition").textContent = "";
+      lastFiveWords();
+      })
+    }, 50) 
   }
-
 };
 
 function knowWord(){
@@ -97,7 +244,7 @@ function getDefinition(){
 function clearProgress(){
 	if (confirm("Are you sure you want to delete your progress history?")){
 	  chrome.storage.sync.clear(function(){})
-    chrome.storage.sync.set({last_five_words:["test","test","test","test","test"]}, function(){})
+    chrome.storage.sync.set({last_five_words:["test","test"]}, function(){})
 	}
 }
 
