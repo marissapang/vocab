@@ -7,17 +7,23 @@ body {
 	font-size: 17px;
 	background-color:#AFF0FF;
 }
+#word {
+	margin-left: 0!important;
+}
 
+#definition {
+	height: 5vh;
+}
 .content {
-	position:absolute;
-	top:30%;
-	left:15%;
 	background:#f5f5f5;
 	color:#3C84B7;
 	width:70%;
-	height:60%;
 	padding:1px;
 	border-radius:10px;
+	margin: 0 auto;	
+	padding-bottom: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 
@@ -27,53 +33,44 @@ body {
 	padding: 0.25% 0.2%;
 	border-radius:0%;
 	border: 1px solid #AFF0FF;
-	position:absolute;
-	top:1%;
-	left:0.9%;
 	color:#CACACA;
 }
 
-.clear_progress {
-	top:5%;
-	width:20%;
-	left:1%;
-}
-
-
 #scores_tracking {
-	position:absolute;
-	top:0%;
-	right:3%;
 	text-align:center;
 	width:10%;
-	height:0.5%;
 	color:#F0B49E;
 	background:#AFF0FF;
 	font-size:14px;
 }
-
+.two-sections {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
 #title {
-	position: absolute;
- 	top:4%;
- 	left:1%;
  	width:50%;
- 	height:1%;
 	color:#3C84B7;
 	background:#AFF0FF;
 }
-
-#switch_decks {
-	position: absolute;
- 	top:100px;
- 	width:100%;
- 	height:35px;
-	color:#FF4500;
+#title h3 {
+	margin: 0;
 }
 
+#switch_decks {
+ 	width:70%;
+	color:#FF4500;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	justify-content: space-between;
+}
+#switch_decks button {
+	width: 90px;
+	margin-bottom: 5px;
+}
 #showDefinitionButton {
-	position:absolute; 
-	left:2%;
-	top:40%;
 	background-color:#E6EDEF;
 	font-size:14px;
 	font-weight:bold;
@@ -84,9 +81,6 @@ body {
 }
 
 #knowWordButton {
-	position:absolute;
-	left:19%;
-	top:40%;
 	background-color:#E6EDEF;
 	font-size:14px;
 	font-weight:bold;
@@ -97,9 +91,6 @@ body {
 }
 
 #dontKnowWordButton {
-	position:absolute;
-	left:38%;
-	top:40%;
 	background-color:#E6EDEF;
 	font-size:14px;
 	font-weight:bold;
@@ -116,9 +107,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:14.5%;
 }
 
 #showDeck1Button:active {
@@ -144,9 +132,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:15%;
 }
 
 #showDeck2Button:active {
@@ -172,9 +157,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:15.5%;
 }
 
 #showDeck3Button:active {
@@ -200,11 +182,7 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:16%;
-}
-
+ }
 #showDeck4Button:active {
   background-color: #E08E79;
   color:#EFEFEF;
@@ -229,9 +207,7 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:16.5%;
+	
 }
 
 #showDeck5Button:active {
@@ -257,9 +233,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:17%;
 }
 
 #showDeck6Button:active {
@@ -285,9 +258,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:17.5%;
 }
 
 #showDeck7Button:active {
@@ -313,9 +283,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:18%;
 }
 
 #showDeck8Button:active {
@@ -341,9 +308,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:18.5%;
 }
 
 #showDeck9Button:active {
@@ -370,9 +334,6 @@ body {
 	padding:0.75% 0.7%;
 	border-radius: 4px;
 	border: 2px solid #E08E79;
-	position:relative;
-	top:10%;
-	left:19%;
 }
 
 #showDeck10Button:active {
@@ -403,9 +364,6 @@ body {
 	padding: 4px 10px;
 	border-radius: 4px;
 	border: 2px solid #EFEFEF;
-	position:absolute;
-	top:5%;
-	right:1%;
 	color:#233D43;
 }
 
@@ -451,4 +409,25 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.canvasjs-chart-canvas {
+	margin-top:25px;
+	width: 100%!important;
+	height: auto!important;
+}
+
+@media (max-width: 300px) {
+	#switch_decks {
+		width: 80%;
+	}
+	#word {
+		margin-left: 0!important;
+	}
+	.content {
+		width: 80%;
+		text-align: center;
+	}
+	.content button {
+		margin-bottom: 10px;
+	}
 }

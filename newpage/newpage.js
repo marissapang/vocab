@@ -92,7 +92,6 @@ function pickWord(deck){
     })
 
   })
-
 }
 
 function nextWord(){
@@ -391,9 +390,9 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
 viewProgressButton.onclick = function() {
-  modal.style.display = "block";
+  modal.style.display = "block"; 
 }
-
+  
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
@@ -406,6 +405,7 @@ window.onclick = function(event) {
   }
 }
 
+/*window.onload =  */
 window.onload = function(){
   chrome.storage.sync.get(deck1, function(items){
     let known_deck1 = Object.keys(items).reduce(function (filtered, key) {
