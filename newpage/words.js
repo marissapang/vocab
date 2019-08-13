@@ -2,7 +2,7 @@
 const dictionary = {
 	bigot: ["(n) an intolerant and prejudiced person"],
 	noxious: ["(adj) harmful, poisonous, or very unpleasant"],
-	kindle: ["(v) to arouse/inspire (an emotion or a feeling)", "(v) to start a fire or catch fire", "(v) for (an emotion) to flaire up)"],
+	kindle: ["(v) to arouse/inspire (an emotion or a feeling)", "(v) to start a fire or catch fire", "(v) for (an emotion) to flair up"],
 	remuneration: ["(n) money paid for work or a service"]
 }
 

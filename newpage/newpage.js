@@ -1,14 +1,30 @@
 let word = deck1[Math.floor(Math.random() * deck1.length)];
 
-console.log(dictionary[word])
-console.log(dictionary[word].length)
-
-
-
 let definition = dictionary[word][0];
 let def2 = dictionary[word].length > 1? dictionary[word][1] : ""
 let def3 = dictionary[word].length > 2? dictionary[word][2] : ""
 let def4 = dictionary[word].length > 3? dictionary[word][3] : ""
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '40') {
+      // down arrow
+      getDefinition()
+    }
+    else if (e.keyCode == '38') {
+      // up arrow 
+      dontKnowWord()
+    }
+    else if (e.keyCode == '39') {
+      // right arrow\
+      knowWord()
+    }
+  }
+
 
 document.querySelector("#word").textContent = word;
 
@@ -90,132 +106,44 @@ function pickWord(deck){
 }
 
 function nextWord(){
+  document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
   if (deck1.includes(word)){
     pickWord(deck1)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      document.querySelector("#def2").textContent = "";
-      document.querySelector("#def3").textContent = "";
-      document.querySelector("#def4").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)     
   } else if (deck2.includes(word)){
     pickWord(deck2)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      document.querySelector("#def2").textContent = "";
-      document.querySelector("#def3").textContent = "";
-      document.querySelector("#def4").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
    } else if (deck2.includes(word)){
     pickWord(deck3)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      document.querySelector("#def2").textContent = "";
-      document.querySelector("#def3").textContent = "";
-      document.querySelector("#def4").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck3.includes(word)){
     pickWord(deck3)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      document.querySelector("#def2").textContent = "";
-      document.querySelector("#def3").textContent = "";
-      document.querySelector("#def4").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck4.includes(word)){
     pickWord(deck4)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck5.includes(word)){
     pickWord(deck5)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck6.includes(word)){
     pickWord(deck6)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck7.includes(word)){
     pickWord(deck7)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck8.includes(word)){
     pickWord(deck8)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck9.includes(word)){
     pickWord(deck9)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50)
   } else if (deck10.includes(word)){
     pickWord(deck10)
-    setTimeout(function afterHalfSec(){
-      chrome.storage.sync.get(["next_word"], function(items){
-      word = items["next_word"]
-      document.querySelector("#word").textContent = word;
-      document.querySelector("#definition").textContent = "";
-      lastFiveWords();
-      })
-    }, 50) 
   }
+  setTimeout(function afterHalfSec(){
+    chrome.storage.sync.get(["next_word"], function(items){
+    word = items["next_word"]
+    document.querySelector("#word").textContent = word;
+    lastFiveWords();
+    })
+  }, 50) 
 };
 
 function knowWord(){
+
   chrome.storage.sync.get(null, function(items){
   	if (word in items){
   		new_value = items[word] + 1 	
@@ -250,7 +178,8 @@ function getDefinition(){
 
   document.querySelector("#definition").textContent = definition
   document.querySelector("#def2").textContent = def2
-
+  document.querySelector("#def3").textContent = def3
+  document.querySelector("#def4").textContent = def4
 };
 
 function clearProgress(){
@@ -285,6 +214,9 @@ function showDeck1(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck2(){
@@ -292,6 +224,9 @@ function showDeck2(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck3(){
@@ -299,6 +234,9 @@ function showDeck3(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck4(){
@@ -306,6 +244,9 @@ function showDeck4(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck5(){
@@ -313,6 +254,9 @@ function showDeck5(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck6(){
@@ -320,6 +264,9 @@ function showDeck6(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck7(){
@@ -327,6 +274,9 @@ function showDeck7(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck8(){
@@ -334,6 +284,9 @@ function showDeck8(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck9(){
@@ -341,6 +294,9 @@ function showDeck9(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 function showDeck10(){
@@ -348,6 +304,9 @@ function showDeck10(){
   definition = dictionary[word];
   document.querySelector("#word").textContent = word;
   document.querySelector("#definition").textContent = "";
+  document.querySelector("#def2").textContent = "";
+  document.querySelector("#def3").textContent = "";
+  document.querySelector("#def4").textContent = "";
 }
 
 
