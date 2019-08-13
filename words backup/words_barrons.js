@@ -1,28 +1,3 @@
-
-const dictionary = {
-	bigot: ["(n) an intolerant and prejudiced person"],
-	noxious: ["(adj) harmful, poisonous, or very unpleasant"],
-	kindle: ["(v) to arouse/inspire (an emotion or a feeling)", "(v) to start a fire or catch fire", "(v) for (an emotion) to flaire up)"],
-	remuneration: ["(n) money paid for work or a service"]
-}
-
-
-
-const deck1 = ["bigot", "kindle", "noxious","remuneration"];
-const deck2 = ["nihao","liaoruzhizhang","pingguo"];
-const deck3 = ["bonjour","sortir","pomme"];
-const deck4 = ["observant","apple","Daniel","cactus"];
-const deck5 = ["nihao","liaoruzhizhang","pingguo"];
-const deck6 = ["bonjour","sortir","pomme"];
-const deck7 = ["observant","apple","Daniel","cactus"];
-const deck8 = ["nihao","liaoruzhizhang","pingguo"];
-const deck9 = ["bonjour","sortir","pomme"];
-const deck10 = ["observant","apple","Daniel","cactus"];
-
-
-
-
-/*
 const dictionary = {abase: "(v) lower; degrade; humiliate; make humble; make (oneself) lose self-respect",
 abash: "(v) make (someone) feel embarrassed, disconcerted, or ashamed",
 abate: "(v) subside or moderate",
@@ -91,4 +66,4 @@ const deck8 = ["nihao","liaoruzhizhang","pingguo"];
 const deck9 = ["bonjour","sortir","pomme"];
 const deck10 = ["observant","apple","Daniel","cactus"];
 
-*/
+

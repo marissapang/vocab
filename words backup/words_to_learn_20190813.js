@@ -1,12 +1,10 @@
 
 const dictionary = {
-	bigot: ["(n) an intolerant and prejudiced person"],
-	noxious: ["(adj) harmful, poisonous, or very unpleasant"],
-	kindle: ["(v) to arouse/inspire (an emotion or a feeling)", "(v) to start a fire or catch fire", "(v) for (an emotion) to flaire up)"],
-	remuneration: ["(n) money paid for work or a service"]
+	bigot: {"(n) an intolerant and prejudiced person"},
+	kindle: {"(v) to arouse/inspire (an emotion or a feeling)", "(v) to start a fire or catch fire", "(v) for (an emotion) to flaire up)"},
+	noxious: {"(adj) harmful, poisonous, or very unpleasant"},
+	remuneration: {"(n) money paid for work or a service"}
 }
-
-
 
 const deck1 = ["bigot", "kindle", "noxious","remuneration"];
 const deck2 = ["nihao","liaoruzhizhang","pingguo"];

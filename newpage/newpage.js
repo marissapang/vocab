@@ -1,5 +1,14 @@
 let word = deck1[Math.floor(Math.random() * deck1.length)];
-let definition = dictionary[word];
+
+console.log(dictionary[word])
+console.log(dictionary[word].length)
+
+
+
+let definition = dictionary[word][0];
+let def2 = dictionary[word].length > 1? dictionary[word][1] : ""
+let def3 = dictionary[word].length > 2? dictionary[word][2] : ""
+let def4 = dictionary[word].length > 3? dictionary[word][3] : ""
 
 document.querySelector("#word").textContent = word;
 
@@ -66,19 +75,6 @@ function pickWord(deck){
         final_deck = known_words
       }
 
-      console.log("2. full deck", deck)
-      console.log("3. last two words", last_five_words)
-      console.log("4. rest of deck", rest_of_deck)
-      console.log("5. word_group_num", word_group_num)
-      console.log("6. learning_words", learning_words)
-      console.log("7. known_words", known_words)
-      console.log("8. new_words", new_words)
-
-
-
-      console.log("final deck", final_deck)
-      console.log("final deck length", final_deck.length)
-      console.log("typeof final deck", typeof(final_deck))
 
       if (typeof final_deck == "string"){
         word = final_deck
@@ -86,7 +82,6 @@ function pickWord(deck){
         word = final_deck[Math.floor(Math.random() * final_deck.length)]
       }
 
-      console.log("pickWord word", word)
       chrome.storage.sync.set({next_word:word}, function(items){})
 
     })
@@ -102,6 +97,9 @@ function nextWord(){
       word = items["next_word"]
       document.querySelector("#word").textContent = word;
       document.querySelector("#definition").textContent = "";
+      document.querySelector("#def2").textContent = "";
+      document.querySelector("#def3").textContent = "";
+      document.querySelector("#def4").textContent = "";
       lastFiveWords();
       })
     }, 50)     
@@ -112,6 +110,9 @@ function nextWord(){
       word = items["next_word"]
       document.querySelector("#word").textContent = word;
       document.querySelector("#definition").textContent = "";
+      document.querySelector("#def2").textContent = "";
+      document.querySelector("#def3").textContent = "";
+      document.querySelector("#def4").textContent = "";
       lastFiveWords();
       })
     }, 50)
@@ -122,6 +123,9 @@ function nextWord(){
       word = items["next_word"]
       document.querySelector("#word").textContent = word;
       document.querySelector("#definition").textContent = "";
+      document.querySelector("#def2").textContent = "";
+      document.querySelector("#def3").textContent = "";
+      document.querySelector("#def4").textContent = "";
       lastFiveWords();
       })
     }, 50)
@@ -132,6 +136,9 @@ function nextWord(){
       word = items["next_word"]
       document.querySelector("#word").textContent = word;
       document.querySelector("#definition").textContent = "";
+      document.querySelector("#def2").textContent = "";
+      document.querySelector("#def3").textContent = "";
+      document.querySelector("#def4").textContent = "";
       lastFiveWords();
       })
     }, 50)
@@ -236,8 +243,14 @@ function dontKnowWord(){
 }
 
 function getDefinition(){
-  definition = dictionary[word];
+  definition = dictionary[word][0];
+  def2 = dictionary[word].length > 1? dictionary[word][1] : ""
+  def3 = dictionary[word].length > 2? dictionary[word][2] : ""
+  def4 = dictionary[word].length > 3? dictionary[word][3] : ""
+
   document.querySelector("#definition").textContent = definition
+  document.querySelector("#def2").textContent = def2
+
 };
 
 function clearProgress(){
@@ -406,7 +419,7 @@ window.onclick = function(event) {
 }
 
 /*window.onload =  */
-window.onload = function(){
+window.onload = function(){ 
   chrome.storage.sync.get(deck1, function(items){
     let known_deck1 = Object.keys(items).reduce(function (filtered, key) {
       if (items[key] >= 5) filtered[key] = items[key];
